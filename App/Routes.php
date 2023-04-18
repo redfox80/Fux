@@ -13,7 +13,7 @@ class Routes
 	}
 
 	public array $routes = [
-		['get:/', HomeController::class],
-		['post:/', HomeController::class]
+		['get:/', 'HomeController@getHome'],
+//		['post:/', HomeController::class]
 	];
 }

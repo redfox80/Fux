@@ -3,19 +3,20 @@
 namespace Fux\Http\Middleware;
 
 use App\Middleware\TestCheck;
-use League\Pipeline\StageInterface;
+use Fux\Classes\FuxRequestClass;
+use Fux\Interfaces\StageInterface;
 use App\Middleware\Middlewares;
 
 class PreRouteMiddleware implements StageInterface
 {
-    public function __invoke($payload)
+    public function __invoke($request): FuxRequestClass
     {
         $middlewares = Middlewares::pre;
 
         foreach($middlewares as $middleware)
         {
-            new $middleware($payload);
+            new $middleware($request);
         }
-        return $payload;
+        return $request;
     }
 }

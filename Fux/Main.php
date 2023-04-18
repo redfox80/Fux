@@ -4,11 +4,12 @@ namespace Fux;
 
 use Content\Home;
 use Dotenv\Dotenv;
+use Fux\Classes\FuxRequestClass;
 use Fux\Http\RequestParser;
 use League\Pipeline\Pipeline;
 use Fux\Http\Middleware\PreRouteMiddleware;
 use Fux\Http\Middleware\PostRouteMiddleware;
-use League\Pipeline\StageInterface;
+use Fux\Interfaces\StageInterface;
 
 class Main
 {
@@ -22,17 +23,18 @@ class Main
             ->pipe(new PreRouteMiddleware())
 			->pipe(new Router())
             ->pipe(new PostRouteMiddleware()) //TODO Make this actually work
-            ->pipe(new displayContent()); //TODO Make this work better
+			->pipe(new Processor());
+//            ->pipe(new displayContent()); //TODO Make this work better
 
-        $pipeline->process($payload = []);
+        $pipeline->process($request = []);
     }
 }
 
 class displayContent implements StageInterface
 {
-    public function __invoke($payload)
+    public function __invoke(FuxRequestClass $request): FuxRequestClass
     {
         new Home;
-        return $payload;
+        return $request;
     }
 }

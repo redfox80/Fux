@@ -1,11 +1,12 @@
 <?php
 namespace Fux\Http;
 
-use League\Pipeline\StageInterface;
+use Fux\Interfaces\StageInterface;
+use Fux\Classes\FuxRequestClass;
 
 class RequestParser implements StageInterface
 {
-    public function __invoke($payload): FuxRequestClass
+    public function __invoke($request): FuxRequestClass
     {
 		$request = new FuxRequestClass;
 //		$request->server = $_SERVER;

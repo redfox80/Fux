@@ -21,7 +21,8 @@ class Cookies
 	 */
 	public static function getCookie(string $name): mixed
 	{
-		return $_COOKIE[$name];
+		if(Cookies::doesExist($name)) return $_COOKIE[@$name];
+		else return null;
 	}
 
 	/**
@@ -30,7 +31,7 @@ class Cookies
 	 */
 	public static function doesExist(string $name): bool
 	{
-		return (Cookies::getCookie($name) !== null);
+		return (isset($_COOKIE[$name]));
 	}
 
 	/**

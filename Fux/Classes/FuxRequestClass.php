@@ -1,10 +1,12 @@
 <?php
-namespace Fux\Http;
+namespace Fux\Classes;
+
+use Fux\Classes\FuxRequestHandler;
 
 class FuxRequestClass
 {
 	public string $uri;
 	public string $method;
 //	public array $server;
-	public object $handler;
+	public FuxRequestHandler $handler;
 }

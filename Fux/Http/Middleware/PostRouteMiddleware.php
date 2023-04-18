@@ -1,12 +1,13 @@
 <?php
 namespace Fux\Http\Middleware;
 
-use League\Pipeline\StageInterface;
+use Fux\Classes\FuxRequestClass;
+use Fux\Interfaces\StageInterface;
 
 class PostRouteMiddleware implements StageInterface
 {
-    public function __invoke($payload)
+    public function __invoke($request): FuxRequestClass
     {
-        return $payload;
+        return $request;
     }
 }

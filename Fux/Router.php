@@ -1,10 +1,11 @@
 <?php
 namespace Fux;
 
+use Fux\Classes\FuxRequestClass;
+use Fux\Classes\FuxRequestHandler;
 use Fux\Exceptions\MethodNotAllowedException;
 use Fux\Exceptions\NotFoundException;
-use Fux\Http\FuxRequestClass;
-use League\Pipeline\StageInterface;
+use Fux\Interfaces\StageInterface;
 use App\Routes;
 
 class Router implements StageInterface
@@ -21,8 +22,11 @@ class Router implements StageInterface
 			{
 				if(strtoupper($p[0]) == $request->method)
 				{
-					echo "YAS<br/>";
-					$request->handler = new $route[1]();
+					$action = explode("@", $route[1]);
+					$request->handler = new FuxRequestHandler;
+					$request->handler->handlerClass = $action[0];
+					$request->handler->handlerFunction = $action[1];
+					$request->handler->handlerNamespace = "App\\Controllers\\";
 					return $request;
 				} else {
 					$methodMismatch = true;
