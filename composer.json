@@ -1,0 +1,17 @@
+{
+	"name": "redfox/fux",
+	"description": "Fux is a backend framework developed by redfox for his own personal use.",
+	"require": {
+		"php": ">=8.1",
+		"league/pipeline": "^1.0",
+		"ext-http": "*",
+		"vlucas/phpdotenv": "^5.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"Fux\\": "Fux/",
+			"App\\": "App/",
+			"Content\\": "Content/"
+		}
+	}
+}
