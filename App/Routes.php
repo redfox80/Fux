@@ -14,6 +14,6 @@ class Routes
 
 	public array $routes = [
 		['get:/', 'HomeController@getHome'],
-//		['post:/', HomeController::class]
+		['get:/paller', 'SlumpController@getSlump']
 	];
 }
